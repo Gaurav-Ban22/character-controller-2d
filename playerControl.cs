@@ -13,7 +13,7 @@ public class playerControl : MonoBehaviour
     public Transform checkPoint;
     public float checkRadius = 0.2f;
     public BoxCollider2D rollCol;
-    public airControlMod = 0.2f;
+    public float airControlMod = 3f;
     public CapsuleCollider2D normalCol;
 
     private Vector3 vel = Vector3.zero;
