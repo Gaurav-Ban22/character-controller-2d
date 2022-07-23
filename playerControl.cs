@@ -9,10 +9,11 @@ public class playerControl : MonoBehaviour
     public Rigidbody2D rb;
     public LayerMask groundLayers;
     public bool isRolling = false;
-    public float jumpForce = 100f;
+    public float jumpForce = 300f;
     public Transform checkPoint;
     public float checkRadius = 0.2f;
     public BoxCollider2D rollCol;
+    public airControlMod = 0.2f;
     public CapsuleCollider2D normalCol;
 
     private Vector3 vel = Vector3.zero;
@@ -30,9 +31,9 @@ public class playerControl : MonoBehaviour
 			// And then smoothing it out and applying it to the character
 			rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref vel, 0.05f);
         }
-        if (airControl) {
+        else if (!isOnGround && airControl) {
 
-            Vector3 targetVelocity = new Vector2(move * 5f, rb.velocity.y);
+            Vector3 targetVelocity = new Vector2(move * airControlMod, rb.velocity.y);
 			// And then smoothing it out and applying it to the character
 			rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref vel, 0.05f);
 
