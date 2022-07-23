@@ -9,11 +9,11 @@ public class playerControl : MonoBehaviour
     public Rigidbody2D rb;
     public LayerMask groundLayers;
     public bool isRolling = false;
-    public float jumpForce = 300f;
+    public float jumpForce = 600f;
     public Transform checkPoint;
     public float checkRadius = 0.2f;
     public BoxCollider2D rollCol;
-    public float airControlMod = 3f;
+    public float airControlMod = 5f;
     public CapsuleCollider2D normalCol;
 
     private Vector3 vel = Vector3.zero;
