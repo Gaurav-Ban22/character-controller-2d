@@ -9,7 +9,7 @@ public class playerControl : MonoBehaviour
     public Rigidbody2D rb;
     public LayerMask groundLayers;
     public bool isRolling = false;
-    public float jumpForce = 40f;
+    public float jumpForce = 100f;
     public Transform checkPoint;
     public float checkRadius = 0.2f;
     public BoxCollider2D rollCol;
@@ -57,6 +57,7 @@ public class playerControl : MonoBehaviour
 			if (colliders[i].gameObject != gameObject)
 			{
 			    isOnGround = true;
+                Debug.Log("n ground");
 			
 			}
            
