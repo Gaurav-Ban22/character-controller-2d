@@ -10,7 +10,7 @@ public class player : MonoBehaviour
 
     float horizontalMove = 0f;
     bool jump = false;
-    bool roll = false;
+    public bool roll = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,7 @@ public class player : MonoBehaviour
         if (Input.GetButtonDown("Jump")) {
             jump = true;
         }
-        if (Input.GetKeyUp(KeyCode.Mouse0)) {
+        if (Input.GetKeyUp(KeyCode.Q)) {
             roll = true;
         }
     
@@ -35,7 +35,7 @@ public class player : MonoBehaviour
     }
 
     void FixedUpdate() {
-        pC.perform(horizontalMove * Time.fixedDeltaTime, false, jump);
+        pC.perform(horizontalMove * Time.fixedDeltaTime, roll, jump);
         jump = false;
         roll = false;
     }

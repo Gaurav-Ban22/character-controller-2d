@@ -15,6 +15,7 @@ public class playerControl : MonoBehaviour
     public BoxCollider2D rollCol;
     public float airControlMod = 5f;
     public CapsuleCollider2D normalCol;
+    public bool facingRight;
 
     private Vector3 vel = Vector3.zero;
     public bool airControl = true;
@@ -30,6 +31,19 @@ public class playerControl : MonoBehaviour
 			Vector3 targetVelocity = new Vector2(move * 10f, rb.velocity.y);
 			// And then smoothing it out and applying it to the character
 			rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref vel, 0.05f);
+
+            if (move > 0 && !facingRight)
+			{
+				// ... flip the player.
+				Flip();
+			}
+			// Otherwise if the input is moving the player left and the player is facing right...
+			else if (move < 0 && facingRight)
+			{
+				// ... flip the player.
+				Flip();
+			}
+            //thx brackeys :)
         }
         else if (!isOnGround && airControl) {
 
@@ -37,13 +51,38 @@ public class playerControl : MonoBehaviour
 			// And then smoothing it out and applying it to the character
 			rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref vel, 0.05f);
 
+            if (move > 0 && !facingRight)
+			{
+				// ... flip the player.
+				Flip();
+			}
+			// Otherwise if the input is moving the player left and the player is facing right...
+			else if (move < 0 && facingRight)
+			{
+				// ... flip the player.
+				Flip();
+			}
+            //thx brackeys :)
+
+            
+
         }
         if (isOnGround && jump) {
 
             isOnGround = false;
             rb.AddForce(new Vector2(0f, jumpForce));
 
+        } 
+
+        if (roll) {
+            Vector3 targetVelocity = new Vector2(move * 20f, rb.velocity.y);
+			// And then smoothing it out and applying it to the character
+			rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref vel, 0.05f);
         }
+
+        
+
+
 
     }
 
@@ -64,6 +103,18 @@ public class playerControl : MonoBehaviour
            
 		}
     }
+
+    private void Flip()
+	{
+		// Switch the way the player is labelled as facing.
+		facingRight = !facingRight;
+
+		// Multiply the player's x local scale by -1.
+		Vector3 theScale = transform.localScale;
+		theScale.x *= -1;
+		transform.localScale = theScale;
+	}
+    //brackeys is cool
  
     
 }
